@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleSocialiteController;
 /*
@@ -17,6 +18,8 @@ use App\Http\Controllers\Auth\GoogleSocialiteController;
 Route::get('auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']);
 Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback']);
 
+Route::resource('produkt', ProductController::class);
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -26,5 +29,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::redirect('home','/dashboard');
+Route::get('/', function () {
+    return view('welcome');
+});
+
 
 require __DIR__.'/auth.php';

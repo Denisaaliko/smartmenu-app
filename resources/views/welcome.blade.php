@@ -24,7 +24,7 @@
     <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
         <a href="#" class="w3-bar-item w3-button">HOME</a>
         <a href="#what's new" class="w3-bar-item w3-button">What's New</a>
-        <a href="#our restaurants" class="w3-bar-item w3-button">Our Restaurants</a>
+        <a href="#our fast-foods" class="w3-bar-item w3-button">Our Fast-Foods</a>
         <a href="#menu" class="w3-bar-item w3-button">MENU</a>
         <a href="#about" class="w3-bar-item w3-button">ABOUT Us</a>
         <a href="#contact" class="w3-bar-item w3-button">CONTACT</a>
