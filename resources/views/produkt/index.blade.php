@@ -21,7 +21,7 @@
                     <td>Kalori</td>
                     <td>Imazh</td>
                     <td>Perditesuar</td>
-                    <td colspan=2>Actions</td>
+                    <td colspan=2>Veprime</td>
                 </tr>
                 </thead>
                 <tbody>

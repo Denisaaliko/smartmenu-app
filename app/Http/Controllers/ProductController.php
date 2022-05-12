@@ -13,7 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $produkt = Produkt::all();
+        $produkt = Produkt::all(); // select * from produkt
 
         return view('produkt.index', compact('produkt')); // -> resources/views/produkt/index.blade.php
     }
@@ -48,7 +48,7 @@ class ProductController extends Controller
            'Kalori' => $request->get('Kalori'),
            'Imazh'=> $request->get('Imazh'),
         ]);
-        $produkt->save();
+        $produkt->save(); // insert into produkt values (...)
         return redirect('/produkt')->with('success', 'Produkti u ruajt.');   // -> resources/views/produkt/index.blade.php
     }
 
@@ -70,7 +70,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $produkt = Produkt::where("ProduktID", $id)->first();
+        $produkt = Produkt::where("ProduktID", $id)->first(); // select * from produkt where ProduktId=id limit 1
         return view('produkt.edit', compact('produkt'));  // -> resources/views/produkt/edit.blade.php
     }
 
@@ -94,7 +94,7 @@ class ProductController extends Controller
         $produkt->Çmim = $request->get('Çmim');
         $produkt->Kalori = $request->get('Kalori');
         $produkt->Imazh = $request->get('Imazh');
-        $produkt->save();
+        $produkt->save(); // update produkt where ProduktID=id set ...
 
         return redirect('/produkt')->with('success', 'Produkti u perditesua.'); // -> resources/views/produkt/index.blade.php
     }
@@ -106,7 +106,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $produkt = Produkt::find($id);
-        $produkt->delete();
+        $produkt->delete(); // delete from produkt where ProduktId=id
 
         return redirect('/produkt')->with('success', 'Produkti u fshi.');  // -> resources/views/produkt/index.blade.php
     }

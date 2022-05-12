@@ -18,19 +18,19 @@
                     @csrf
                     <div class="form-group">
                         <label for="emer">Emer:*</label>
-                        <input type="text" class="form-control" name="Emer"/>
+                        <input type="text" class="form-control" name="Emer" required/>
                     </div>
                     <div class="form-group">
                         <label for="cmim">Çmim:*</label>
-                        <input type="number" class="form-control" name="Çmim"/>
+                        <input type="number" class="form-control" name="Çmim" required/>
                     </div>
                     <div class="form-group">
                         <label for="kalori">Kalori:*</label>
-                        <input type="number" class="form-control" name="Kalori"/>
+                        <input type="number" class="form-control" name="Kalori" required/>
                     </div>
                     <div class="form-group">
                         <label for="imazh">Imazh:*</label>
-                        <input type="text" class="form-control" name="Imazh"/>
+                        <input type="text" class="form-control" name="Imazh" required/>
                     </div>
 
 
