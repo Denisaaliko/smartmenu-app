@@ -1,5 +1,10 @@
-@extends('layouts.main')
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Porosi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
 <div class="container">
     @yield('main')
 </div>
@@ -15,12 +20,12 @@
         <table class="table table-striped">
             <thead>
             <tr>
+
                 <td>PorosiID</td>
                 <td>Fastfood</td>
                 <td>Perdorues</td>
                 <td>Data</td>
                 <td>Adresa</td>
-                <td>Status</td>
                 <td>CmimTotal</td>
                 <td>Sasia</td>
             </tr>
@@ -38,15 +43,16 @@
                     <td>{{$porosi->Sasia}}</td>
 
                     <td>
-                        <form action="{{route('update.porosi',$porosi->PorosiID)}}" method="post">
+                        <form action="{{route('show.porosi',$porosi->PorosiID)}}" method="post">
                             @csrf
                             <label for="statusi">Statusi</label>
                             <select name="statusi" id="statusi">
-                                <option value="derguar"> Derguar</option>
+                                <option value="derguar">Derguar</option>
                                 <option value="anulluar">Anulluar</option>
                                 <option value="u nis">U nis</option>
                             </select>
                             <button class="btn btn-danger" type="submit">Ndrysho</button>
+
                         </form>
                     </td>
                 </tr>
@@ -56,4 +62,5 @@
         <div>
         </div>
 
-@endsection
+</body>
+</html>

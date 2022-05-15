@@ -32,6 +32,18 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if (Auth::user()->RolID == 1) {
+            return redirect()->route('dashboard');
+        }
+
+        if (Auth::user()->RolID == 2) {
+            return redirect()->route('klient');
+        }
+
+        if (Auth::user()->RolID == 3) {
+            return redirect()->route('postier');
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

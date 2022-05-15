@@ -41,6 +41,14 @@ class ProductController extends Controller
             'Imazh'=>'required',
 
         ]);
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['Imazh'] = "$profileImage";
+        }
+
         // Getting values from the blade template form
         $produkt = new Produkt([
            'Emer' =>  $request->get('Emer'),
@@ -88,6 +96,14 @@ class ProductController extends Controller
             'Imazh'=>'required',
 
         ]);
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['Imazh'] = "$profileImage";
+        }
+
         $produkt = Produkt::where("ProduktID", $id)->first();
         // Getting values from the blade template form
         $produkt->Emer =  $request->get('Emer');

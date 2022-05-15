@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2>
-            {{ __('Dashboard') }}
+            {{ __('Veprime') }}
         </h2>
     </x-slot>
 
@@ -10,6 +10,9 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <a href="/produkt">Shiko Produktet</a>
+                </div>
+                <div class="p-6 bg-white border-b border-gray-200">
+                <a href="/porosi">Shiko Porosi</a>
                 </div>
             </div>
         </div>

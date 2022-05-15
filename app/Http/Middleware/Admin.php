@@ -3,7 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class Admin
@@ -11,31 +13,16 @@ class Admin
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @param Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
+     * @return Response|RedirectResponse
      */
-      public function handle($request, Closure $next)
-        {
-            if (!Auth::check()) {
-                return redirect()->route('login');
-            }
-
-            if (Auth::user()->rol == 1) {
-                return redirect()->route('admin');
-            }
-
-            if (Auth::user()->rol == 2) {
-                return redirect()->route('klient');
-            }
-
-            if (Auth::user()->rol == 3) {
-                return redirect()->route('postier');
-            }
-
-            if (Auth::user()->rol == 4) {
-                return $next($request);
-            }
-
+    public function handle($request, Closure $next)
+    {
+        if (Auth::user()->RolID == 1) {
+            return $next($request);
         }
+
+        return redirect('/');
+    }
 }

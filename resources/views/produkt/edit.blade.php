@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-group">
                     <label for="imazh">Imazh:*</label>
-                    <input type="text" class="form-control" name="Imazh" value="{{ $produkt->Imazh }}"/>
+                    <input type="file" name="Imazh" class="form-control" placeholder="image">
                 </div>
                 <button type="submit" class="btn btn-primary">Perditeso</button>
             </form>

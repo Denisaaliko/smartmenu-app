@@ -10,7 +10,10 @@ class PostierController extends Controller
 {
     public function index()
     {
-        $porosi = Porosi::all();
+        $porosi = DB::select("select p.PorosiID, p.Data, p.Adresa, p.CmimTotal, p.Status, p.Sasia, f.Emer, u.name from porosi p
+            inner join fastfood f on p.fastfoodID = f.fastfoodID
+            inner join users u on u.id= p.PerdoruesID
+            order by p.Data desc");
         // select * from porosi
 
         return view('postier', compact('porosi')); // -> resources/views/postier.blade.php
@@ -24,7 +27,7 @@ class PostierController extends Controller
         $porosi = Porosi::where("PorosiID", $id)->first();
         // Getting values from the blade template form
         $porosi->Status =  $request->get('statusi');
-        $porosi->save();
+        $porosi->save(); // update produkt where ProduktID=id set ...
 
         return redirect('/postier')->with('success', 'Statusi u perditesua.'); // -> resources/views/postier.blade.php
     }

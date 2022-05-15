@@ -29,8 +29,8 @@
                         <input type="number" class="form-control" name="Kalori" required/>
                     </div>
                     <div class="form-group">
-                        <label for="imazh">Imazh:*</label>
-                        <input type="text" class="form-control" name="Imazh" required/>
+                        <label for="image">Imazh:*</label>
+                        <input type="file" name="Imazh" class="form-control" placeholder="image">
                     </div>
 
 

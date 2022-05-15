@@ -17,24 +17,10 @@ class Klient
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-
-        if (Auth::user()->rol == 1) {
-            return redirect()->route('admin');
-        }
-
-        if (Auth::user()->rol == 2) {
-            return redirect()->route('klient');
-        }
-
-        if (Auth::user()->rol == 3) {
-            return redirect()->route('postier');
-        }
-
-        if (Auth::user()->rol == 4) {
+        if (Auth::user()->RolID == 2) {
             return $next($request);
         }
+
+        return redirect('/');
     }
 }
