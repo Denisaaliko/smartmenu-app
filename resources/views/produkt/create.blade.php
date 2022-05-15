@@ -1,5 +1,4 @@
 @extends('produkt.base')
-
 @section('main')
     <div class="row">
         <div class="col-sm-8 offset-sm-2">

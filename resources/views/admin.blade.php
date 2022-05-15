@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Porosi</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
+@extends('layouts.main')
+@section('content')
 <div class="container">
     @yield('main')
 </div>
@@ -62,5 +57,4 @@
         <div>
         </div>
 
-</body>
-</html>
+@endsection
