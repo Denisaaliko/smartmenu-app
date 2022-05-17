@@ -21,6 +21,7 @@
                 <td>Perdorues</td>
                 <td>Data</td>
                 <td>Adresa</td>
+                <td>Status</td>
                 <td>CmimTotal</td>
                 <td>Sasia</td>
             </tr>

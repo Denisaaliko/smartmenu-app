@@ -11,7 +11,7 @@ class PorosiController extends Controller
 {
     public function index()
     {
-        $produkt = DB::select("SELECT ff.fastfoodID,p.ProduktID,p.Emer, p.Çmim, p.Kalori, p.Imazh FROM smartmenu.menu as menu
+        $produkt = DB::select("SELECT ff.fastfoodID,ff.Emer as fEmer, ff.Vendndodhje, p.ProduktID,p.Emer, p.Çmim, p.Kalori, p.Imazh FROM smartmenu.menu as menu
             inner join smartmenu.menudetaje as md
             on menu.MenuID = md.MenuID
             inner join smartmenu.fastfood as ff
@@ -22,6 +22,17 @@ class PorosiController extends Controller
         // select * from porosi
 
         return view('klient', compact('produkt')); // -> resources/views/klient.blade.php
+    }
+
+    public function klientPorosi()
+    {
+        $porosi = DB::select("select p.PorosiID, p.PerdoruesID, p.Data, p.Adresa, p.CmimTotal, p.Status, p.Sasia, f.Emer, u.name from porosi p
+            inner join fastfood f on p.fastfoodID = f.fastfoodID
+            inner join users u on u.id= p.PerdoruesID
+            where p.PerdoruesID=" . auth()->id() . " order by p.Data desc;");
+        // select * from porosi
+
+        return view('klient-porosi', compact('porosi')); // -> resources/views/postier.blade.php
     }
 
     /**
@@ -46,7 +57,7 @@ class PorosiController extends Controller
             'Sasia' => $request->get('sasi'),
             'Data' => now(),
             'Status' => "U mor",
-            'CmimTotal' => $request->get('Çmim') * $request->get('sasi'),
+            'CmimTotal' => $request->get('cmim') * $request->get('sasi'),
         ]);
         $porosi->save(); // insert into produkt values (...)
         return redirect('/klient')->with('success', 'Porosia u ruajt.');   // -> resources/views/produkt/index.blade.php

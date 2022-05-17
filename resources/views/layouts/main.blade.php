@@ -43,13 +43,33 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
                 <li class="nav-item">
                     <a class="nav-link " aria-current="page" href="/">KREU</a>
                 </li>
+
+                @if(auth()->user() && auth()->user()->RolID == 2)
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/klient">MENU</a>
+                    </li>
+                @endif
+
                 <li class="nav-item">
-                    <a class="nav-link" href="/klient">MENU</a>
+                    @if( auth()->user() && Auth::user()->RolID ==3)
+                        <a class="nav-link" href="/postier">POROSI</a>
+                    @elseif(auth()->user() && Auth::user()->RolID ==1)
+                        <a class="nav-link" href="/admin">POROSI</a>
+                    @elseif(auth()->user() && auth()->user()->RolID == 2)
+                        <a class="nav-link" href="/klient-porosi">POROSI</a>
+                    @endif
                 </li>
+
+                <li class="nav-item">
+                    @if(auth()->user() && Auth::user()->RolID ==1)
+                        <a class="nav-link" href="/produkt">PRODUKT</a>
+                    @endif
+                </li>
+
+
                 <li class="nav-item">
                     @if(auth()->user())
                         <form action="/logout" method="post">

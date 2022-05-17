@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PorosiController;
 use App\Http\Controllers\PostierController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleSocialiteController;
@@ -24,24 +25,27 @@ Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 Auth::routes();
 
 // Admin
-Route::get('/dashboard', function () {return view('dashboard');})->middleware(['auth', 'admin'])->name('dashboard');
 Route::resource('produkt', ProductController::class)->middleware(['auth', 'admin']);
-Route::get('/admin', [AdminController::class, 'index'])->middleware(['auth', 'admin']);
+Route::get('/admin', [AdminController::class, 'index'])->middleware(['auth', 'admin'])->name('admin');
 Route::get('/porosi',[AdminController::class,'index'])->name('show.porosi')->middleware(['auth', 'admin']);
 
 // Klient
 Route::get('/klient',[PorosiController::class,'index'])->name('klient')->middleware(['auth', 'klient']);
 Route::post('/create-porosi',[PorosiController::class, 'store'])->middleware(['auth', 'klient'])->name('create.porosi');
+Route::get('/klient-porosi',[PorosiController::class,'klientPorosi'])->name('klient.porosi')->middleware(['auth', 'klient']);
+Route::post('/produkt/search',[SearchController::class,'showProdukt'])->name('search');
 
 // Postier
 Route::get('/postier',[PostierController::class,'index'])->name('postier')->middleware(['auth', 'postier']);
 Route::post('/update-porosi/{id}',[PostierController::class, 'update'])->middleware(['auth', 'postier'])->name('update.porosi');
 
 // General
-Route::redirect('home','/dashboard');
+Route::redirect('home','/admin');
 Route::get('/', function () {return view('welcome');});
 
 

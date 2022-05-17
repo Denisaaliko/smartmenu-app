@@ -20,7 +20,6 @@
                     <td>Çmim</td>
                     <td>Kalori</td>
                     <td>Imazh</td>
-                    <td>Perditesuar</td>
                     <td colspan=2>Veprime</td>
                 </tr>
                 </thead>
@@ -32,7 +31,6 @@
                         <td>{{$produkt->Çmim}}</td>
                         <td>{{$produkt->Kalori}}</td>
                         <td><img src="/img/{{$produkt->Imazh}}" width="50"></td>
-                        <td>{{$produkt->updated_at}}</td>
                         <td>
                             <a href="{{ route('produkt.edit',$produkt->ProduktID)}}" class="btn btn-primary">Ndrysho</a>
                         </td>

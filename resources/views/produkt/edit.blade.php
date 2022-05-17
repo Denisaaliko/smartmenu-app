@@ -14,7 +14,7 @@
                 </div>
                 <br />
             @endif
-            <form method="post" action="{{ route('produkt.update', $produkt->ProduktID) }}">
+            <form method="post" action="{{ route('produkt.update', $produkt->ProduktID) }}" enctype="multipart/form-data">
                 @method('PATCH')
                 @csrf
                 <div class="form-group">

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Produkt;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -42,11 +44,10 @@ class ProductController extends Controller
 
         ]);
 
-        if ($image = $request->file('image')) {
-            $destinationPath = 'image/';
+        $profileImage = null;
+        if ($image = $request->file('Imazh')) {
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['Imazh'] = "$profileImage";
+            Storage::disk('public')->put($profileImage, file_get_contents($image));
         }
 
         // Getting values from the blade template form
@@ -54,9 +55,11 @@ class ProductController extends Controller
            'Emer' =>  $request->get('Emer'),
            'Çmim' => $request->get('Çmim'),
            'Kalori' => $request->get('Kalori'),
-           'Imazh'=> $request->get('Imazh'),
+           'Imazh'=> $profileImage,
         ]);
-        $produkt->save(); // insert into produkt values (...)
+        $produkt->save();// insert into produkt values (...)
+
+        DB::insert("INSERT into menudetaje values(1, $produkt->ProduktID)");
         return redirect('/produkt')->with('success', 'Produkti u ruajt.');   // -> resources/views/produkt/index.blade.php
     }
 
@@ -97,11 +100,10 @@ class ProductController extends Controller
 
         ]);
 
-        if ($image = $request->file('image')) {
-            $destinationPath = 'image/';
+        $profileImage = null;
+        if ($image = $request->file('Imazh')) {
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['Imazh'] = "$profileImage";
+            Storage::disk('public')->put($profileImage, file_get_contents($image));
         }
 
         $produkt = Produkt::where("ProduktID", $id)->first();
@@ -109,7 +111,7 @@ class ProductController extends Controller
         $produkt->Emer =  $request->get('Emer');
         $produkt->Çmim = $request->get('Çmim');
         $produkt->Kalori = $request->get('Kalori');
-        $produkt->Imazh = $request->get('Imazh');
+        $produkt->Imazh = $profileImage;
         $produkt->save(); // update produkt where ProduktID=id set ...
 
         return redirect('/produkt')->with('success', 'Produkti u perditesua.'); // -> resources/views/produkt/index.blade.php
